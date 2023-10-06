@@ -35,7 +35,7 @@ const checkPassword = () => {
     }
 }
 const checkPasswordConf = () => {
-    if (inputPasswordConf.value !== inputPassword.value) {
+    if (inputPasswordConf.value !== inputPassword.value && inputPasswordConf.value.length == 0) {
         showError(inputPasswordConf, "Passwords don't match")
     } else {
         showSucces(inputPasswordConf, "success")
@@ -44,19 +44,21 @@ const checkPasswordConf = () => {
 
 const showError = (input, msg) => {
     input.style.border = "1px solid red"
-    input.nextElementSibling.nextElementSibling.classList = "msg error"
-    input.nextElementSibling.nextElementSibling.innerText = `${msg}`
+    input.nextElementSibling.classList = "msg error"
+    input.nextElementSibling.innerText = `${msg}`
+    result.push(input)
 }
 
 const showSucces = (input, msg) => {
     input.style.border = "1px solid green"
-    input.nextElementSibling.nextElementSibling.classList = "msg success"
-    input.nextElementSibling.nextElementSibling.innerText = `${msg}`
-    result.push(input)
+    input.nextElementSibling.classList = "msg success"
+    input.nextElementSibling.innerText = `${msg}`
+    
 }
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
+    result.length = 0
     checkRequired(inputUsername)
     checkRequired(inputEmail)
     checkRequired(inputPassword)
@@ -66,11 +68,13 @@ form.addEventListener("submit", (e) => {
     checkEmail()
     checkPassword()
     checkPasswordConf()
-console.log(result);
-    // if (result.length == 4) {
-    //     console.log(result);
-    //     result.length = 0
-    // } else {
-    //     result.length = 0
-    // }
+    console.log(result);
+    if (!result.length) {
+        console.log({
+            inputUsername : inputUsername.value,
+            inputEmail : inputEmail.value,
+            inputPassword : inputPassword.value
+        });
+    }
+    
 })

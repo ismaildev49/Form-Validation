@@ -24,6 +24,7 @@ input{
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     width: 100%;
+    margin-bottom: 0;
 }
 label{
     font-family: "Poppins", sans-serif;
@@ -37,7 +38,7 @@ label{
   
 }
 .container{
-    min-width: 400px;
+    min-width: 300px;
     max-width: 400px;
     margin: 0 auto;
     border: 4px solid white;
